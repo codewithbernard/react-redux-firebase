@@ -5,6 +5,7 @@
 .to-do-list-item {
   margin-top: 10px;
   color: white;
+  transition: background-color 1s;
 }
 
 .to-do-list-item h4 {
@@ -19,4 +20,23 @@
 .complete-todo-item {
   float: right;
   right: 20px;
+}
+
+#todo-add-form {
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+
+#nothing-was-found {
+  margin-top: 150px;
+}
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    margin-left: 1;
+  }
 }

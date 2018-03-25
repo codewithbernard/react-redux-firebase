@@ -27,7 +27,7 @@ class ToDoList extends Component {
     const { addFormVisible, addFormValue } = this.state;
     if (addFormVisible) {
       return (
-        <div className="col s10 offset-s1">
+        <div id="todo-add-form" className="col s10 offset-s1">
           <form onSubmit={this.handleFormSubmit}>
             <div className="input-field">
               <i className="material-icons prefix">note_add</i>
@@ -47,9 +47,23 @@ class ToDoList extends Component {
 
   renderToDos() {
     const { data } = this.props;
-    return _.map(data, (value, key) => {
+    const toDos = _.map(data, (value, key) => {
       return <ToDoListItem key={key} todoId={key} todo={value} />;
     });
+    if (!_.isEmpty(toDos)) {
+      return toDos;
+    }
+    return (
+      <div className="col s10 offset-s1 center-align">
+        <img
+          alt="Nothing was found"
+          id="nothing-was-found"
+          src="/img/nothing.png"
+        />
+        <h4>You have completed all the tasks</h4>
+        <p>Start by clicking add button in the bottom of the screen</p>
+      </div>
+    );
   }
 
   componentWillMount() {
