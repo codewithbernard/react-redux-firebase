@@ -1,5 +1,7 @@
 import "./ToDoList.css";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import ToDoListItem from "./ToDoListItem";
 
 class ToDoList extends Component {
@@ -62,4 +64,10 @@ class ToDoList extends Component {
   }
 }
 
-export default ToDoList;
+const mapStateToProps = ({ data }) => {
+  return {
+    data
+  };
+};
+
+export default connect(mapStateToProps, actions)(ToDoList);
