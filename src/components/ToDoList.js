@@ -1,6 +1,7 @@
 import "./ToDoList.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import _ from "lodash";
 import * as actions from "../actions";
 import ToDoListItem from "./ToDoListItem";
 
@@ -15,22 +16,28 @@ class ToDoList extends Component {
   };
 
   handleFormSubmit = event => {
+    const { addFormValue } = this.state;
+    const { addToDo } = this.props;
     event.preventDefault();
+    addToDo({ title: addFormValue });
+    this.setState({ addFormValue: "" });
   };
 
   renderAddForm = () => {
-    if (this.state.addFormVisible) {
+    const { addFormVisible, addFormValue } = this.state;
+    if (addFormVisible) {
       return (
         <div className="col s12">
           <form onSubmit={this.handleFormSubmit}>
             <div className="input-field">
               <i className="material-icons prefix">note_add</i>
               <input
+                value={addFormValue}
                 onChange={this.handleInputChange}
                 id="toDoNext"
                 type="text"
               />
-              <label for="toDoNext">What To Do Next</label>
+              <label htmlFor="toDoNext">What To Do Next</label>
             </div>
           </form>
         </div>
@@ -38,14 +45,24 @@ class ToDoList extends Component {
     }
   };
 
+  renderToDos() {
+    const { data } = this.props;
+    return _.map(data, (value, key) => {
+      return <ToDoListItem key={key} todoId={key} todo={value} />;
+    });
+  }
+
+  componentWillMount() {
+    this.props.fetchToDos();
+  }
+
   render() {
     const { addFormVisible } = this.state;
-
     return (
       <div className="to-do-list-container">
         <div className="row">
           {this.renderAddForm()}
-          <ToDoListItem />
+          {this.renderToDos()}
         </div>
         <div className="fixed-action-btn">
           <button
