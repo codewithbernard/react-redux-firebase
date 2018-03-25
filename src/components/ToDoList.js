@@ -27,7 +27,7 @@ class ToDoList extends Component {
     const { addFormVisible, addFormValue } = this.state;
     if (addFormVisible) {
       return (
-        <div className="col s12">
+        <div className="col s10 offset-s1">
           <form onSubmit={this.handleFormSubmit}>
             <div className="input-field">
               <i className="material-icons prefix">note_add</i>
@@ -67,7 +67,7 @@ class ToDoList extends Component {
         <div className="fixed-action-btn">
           <button
             onClick={() => this.setState({ addFormVisible: !addFormVisible })}
-            className="btn-floating btn-large teal darken-2"
+            className="btn-floating btn-large teal darken-4"
           >
             {addFormVisible ? (
               <i className="large material-icons">close</i>

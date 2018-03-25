@@ -3,6 +3,20 @@
 }
 
 .to-do-list-item {
-  margin-top: 5px;
+  margin-top: 10px;
   color: white;
+}
+
+.to-do-list-item h4 {
+  padding-left: 25px;
+  padding-bottom: 5px;
+}
+
+.to-do-list-item:hover {
+  background-color: #26a69a !important;
+}
+
+.complete-todo-item {
+  float: right;
+  right: 20px;
 }
