@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import ToDoList from "./components/ToDoList";
+import SignIn from "./components/SignIn";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <ToDoList />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Route exact path="/" component={SignIn} />
+          <Route path="/app" component={ToDoList} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

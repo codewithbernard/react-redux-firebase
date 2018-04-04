@@ -1,0 +1,22 @@
+.social-signin {
+  padding: 20px 40px 20px 40px;
+  font-size: 30px;
+  border-radius: 100px;
+  text-align: center;
+  text-decoration: none;
+  background: #dc453a;
+  color: white;
+  transition: opacity 0.5s;
+}
+
+.social-signin-container {
+  margin-top: 30%;
+}
+
+.social-signin:hover {
+  opacity: 0.9;
+}
+
+.social-signin-icon {
+  padding-right: 15px;
+}
