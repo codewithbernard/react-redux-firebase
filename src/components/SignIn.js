@@ -2,8 +2,19 @@ import "./SignIn.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../actions";
+import PropTypes from "prop-types";
 
 class Signin extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.auth) {
+      this.context.router.history.push("/app");
+    }
+  }
+
   render() {
     return (
       <div className="row valign-wrapper social-signin-container">
@@ -18,4 +29,8 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { signIn })(Signin);
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps, { signIn })(Signin);
