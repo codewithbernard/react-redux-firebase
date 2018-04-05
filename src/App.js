@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import ToDoList from "./components/ToDoList";
 import SignIn from "./components/SignIn";
 import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchUser } from "./actions";
 
 class App extends Component {
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -16,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchUser })(App);

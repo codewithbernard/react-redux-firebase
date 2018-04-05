@@ -1,5 +1,5 @@
-import { todosRef } from "../config/firebase";
-import { FETCH_TODOS } from "./types";
+import { todosRef, authRef, provider } from "../config/firebase";
+import { FETCH_TODOS, FETCH_USER } from "./types";
 
 export const addToDo = newToDo => async dispatch => {
   todosRef.push().set(newToDo);
@@ -16,4 +16,30 @@ export const fetchToDos = () => async dispatch => {
       payload: snapshot.val()
     });
   });
+};
+
+export const fetchUser = () => dispatch => {
+  authRef.onAuthStateChanged(user => {
+    if (user) {
+      dispatch({
+        type: FETCH_USER,
+        payload: user
+      });
+    } else {
+      // User is not signed in
+    }
+  });
+};
+
+export const signIn = () => dispatch => {
+  authRef
+    .signInWithPopup(provider)
+    .then(result => {
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };
