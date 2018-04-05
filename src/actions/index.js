@@ -26,7 +26,10 @@ export const fetchUser = () => dispatch => {
         payload: user
       });
     } else {
-      // User is not signed in
+      dispatch({
+        type: FETCH_USER,
+        payload: null
+      });
     }
   });
 };
@@ -38,6 +41,17 @@ export const signIn = () => dispatch => {
       // The signed-in user info.
       var user = result.user;
       console.log(user);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const signOut = () => dispatch => {
+  authRef
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
     })
     .catch(error => {
       console.log(error);

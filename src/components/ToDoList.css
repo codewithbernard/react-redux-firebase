@@ -31,6 +31,10 @@
   margin-top: 150px;
 }
 
+#sign-out-button {
+  margin-right: 15px;
+}
+
 @keyframes slidein {
   from {
     opacity: 0;
