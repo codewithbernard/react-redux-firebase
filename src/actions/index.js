@@ -37,11 +37,7 @@ export const fetchUser = () => dispatch => {
 export const signIn = () => dispatch => {
   authRef
     .signInWithPopup(provider)
-    .then(result => {
-      // The signed-in user info.
-      var user = result.user;
-      console.log(user);
-    })
+    .then(result => {})
     .catch(error => {
       console.log(error);
     });

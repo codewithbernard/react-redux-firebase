@@ -10,7 +10,7 @@
 }
 
 .social-signin-container {
-  margin-top: 30%;
+  margin-top: 15%;
 }
 
 .social-signin:hover {
@@ -19,4 +19,12 @@
 
 .social-signin-icon {
   padding-right: 15px;
+}
+
+#sign-in {
+  margin-bottom: -20px;
+}
+
+#sign-in-header {
+  margin-bottom: 40px;
 }

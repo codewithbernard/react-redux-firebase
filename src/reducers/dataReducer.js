@@ -1,6 +1,6 @@
 import { FETCH_TODOS } from "../actions/types";
 
-export default (state = {}, action) => {
+export default (state = "loading", action) => {
   switch (action.type) {
     case FETCH_TODOS:
       return action.payload;
