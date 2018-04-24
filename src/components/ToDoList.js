@@ -18,9 +18,9 @@ class ToDoList extends Component {
 
   handleFormSubmit = event => {
     const { addFormValue } = this.state;
-    const { addToDo } = this.props;
+    const { addToDo, auth } = this.props;
     event.preventDefault();
-    addToDo({ title: addFormValue });
+    addToDo({ title: addFormValue }, auth.uid);
     this.setState({ addFormValue: "" });
   };
 
@@ -68,7 +68,8 @@ class ToDoList extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchToDos();
+    const { auth } = this.props;
+    this.props.fetchToDos(auth.uid);
   }
 
   render() {
@@ -112,9 +113,10 @@ class ToDoList extends Component {
   }
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, auth }) => {
   return {
-    data
+    data,
+    auth
   };
 };
 

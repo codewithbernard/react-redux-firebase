@@ -1,16 +1,22 @@
 import { todosRef, authRef, provider } from "../config/firebase";
 import { FETCH_TODOS, FETCH_USER } from "./types";
 
-export const addToDo = newToDo => async dispatch => {
-  todosRef.push().set(newToDo);
+export const addToDo = (newToDo, uid) => async dispatch => {
+  todosRef
+    .child(uid)
+    .push()
+    .set(newToDo);
 };
 
-export const completeToDo = completeToDoId => async dispatch => {
-  todosRef.child(completeToDoId).remove();
+export const completeToDo = (completeToDoId, uid) => async dispatch => {
+  todosRef
+    .child(uid)
+    .child(completeToDoId)
+    .remove();
 };
 
-export const fetchToDos = () => async dispatch => {
-  todosRef.on("value", snapshot => {
+export const fetchToDos = uid => async dispatch => {
+  todosRef.child(uid).on("value", snapshot => {
     dispatch({
       type: FETCH_TODOS,
       payload: snapshot.val()
